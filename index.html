@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#eef1f6">
+  <title>Radar gia hạn – Theo dõi gói đăng ký</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;800&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Radar gia hạn</h1>
+      <div class="sim" aria-label="Điều khiển ngày demo">
+        Ngày demo: <b id="today"></b>
+        <button class="chip" data-d="1">+1 ngày</button>
+        <button class="chip" data-d="3">+3 ngày</button>
+        <button class="chip" data-d="0">Về hôm nay</button>
+        <button class="chip" id="reset">Đặt lại dữ liệu mẫu</button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="leak">
+        <small>Sắp bị trừ trong 30 ngày tới</small>
+        <div class="big" id="next30">0đ</div>
+        <div class="sub" id="next30sub"></div>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <small>Chi phí định kỳ mỗi tháng</small>
+          <div class="v" id="month">0đ</div>
+        </div>
+        <div class="stat">
+          <small>Quy đổi cả năm</small>
+          <div class="v" id="year">0đ</div>
+        </div>
+        <div class="stat save">
+          <small>Đã tiết kiệm nhờ hủy gói</small>
+          <div class="v" id="saved">0đ</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="cols">
+      <main>
+        <div class="bar">
+          <h2>Các gói đang theo dõi</h2>
+          <button class="primary" id="add">Thêm dịch vụ</button>
+        </div>
+        <div class="list" id="list"></div>
+      </main>
+      <aside>
+        <div class="panel">
+          <h2>Kênh nhắc hạn</h2>
+          <div class="ch" id="channels">
+            <label><input type="checkbox" value="Email" checked>Email</label>
+            <label><input type="checkbox" value="Web Push" checked>Web Push</label>
+            <label><input type="checkbox" value="Telegram" checked>Telegram</label>
+          </div>
+          <p class="meta reminder-help">
+            Hệ thống nhắc trước 3 ngày, trước 1 ngày và đúng ngày trừ tiền.
+            Bấm “+1 ngày” ở trên để xem nhắc hạn tự chạy.
+          </p>
+          <div class="log" id="log"></div>
+        </div>
+        <div class="panel">
+          <h2>Đã hủy</h2>
+          <div id="arch"></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <dialog id="dlg">
+    <div class="dlg">
+      <h2>Thêm dịch vụ</h2>
+      <p class="meta">Chọn nhanh từ thư viện, rồi điền giá và ngày gia hạn.</p>
+      <div class="tpls" id="tpls"></div>
+      <div class="f">
+        <label class="full">
+          Tên dịch vụ
+          <input id="fName" placeholder="Ví dụ: Netflix">
+        </label>
+        <label>
+          Giá (đ)
+          <input id="fPrice" type="number" min="0" step="1000" placeholder="260000">
+        </label>
+        <label>
+          Chu kỳ
+          <select id="fCycle">
+            <option value="m">Hàng tháng</option>
+            <option value="y">Hàng năm</option>
+          </select>
+        </label>
+        <label>
+          Ngày gia hạn tiếp theo
+          <input id="fDate" type="date">
+        </label>
+        <label>
+          Nguồn tiền
+          <select id="fSrc">
+            <option>Thẻ Techcombank</option>
+            <option>Thẻ Visa</option>
+            <option>Ví MoMo</option>
+            <option>Apple ID</option>
+            <option>Google Play</option>
+          </select>
+        </label>
+        <label class="chk full">
+          <input type="checkbox" id="fTrial">
+          Đang dùng thử miễn phí (sẽ tự tính tiền khi hết hạn)
+        </label>
+      </div>
+      <div class="row">
+        <button class="ghost" id="cancelDlg">Đóng</button>
+        <button class="primary" id="save">Lưu dịch vụ</button>
+      </div>
+    </div>
+  </dialog>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
